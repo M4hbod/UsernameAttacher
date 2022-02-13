@@ -63,7 +63,7 @@
       "value": ""
     },
     "LOG_CHANNEL": {
-      "description": "Add you log channel ID",
+      "description": "Add your log channel ID",
       "required": false,
       "value": ""
     }
