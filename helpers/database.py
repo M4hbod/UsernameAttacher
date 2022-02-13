@@ -47,6 +47,7 @@ class Database:
 
     async def set_enabled(self, chat_id):
         channel = dict(
+            join_date=datetime.date.today().isoformat(),
             id=chat_id,
             enabled=True,
         )
@@ -54,6 +55,7 @@ class Database:
 
     async def set_disabled(self, chat_id):
         channel = dict(
+            join_date=datetime.date.today().isoformat(),
             id=chat_id,
             enabled=False,
         )
