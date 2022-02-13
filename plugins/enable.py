@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from helpers.database import db
 
-@Client.on_message(filters.channel & filters.regex("enable") & ~filters.forwarded)
+@Client.on_message(filters.channel & filters.regex("enable") & ~filters.forwarded, group=5)
 async def enabler(c , m):
     print(1)
     # me = await c.get_chat_member(m.chat.id, "me")
