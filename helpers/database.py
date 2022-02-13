@@ -51,7 +51,7 @@ class Database:
             id=chat_id,
             enabled=True,
         )
-        await self.col.update_one({"id": id}, {"$set": {"settings": channel}})
+        await self.col.update_one({"id": chat_id}, {"$set": {"settings": channel}})
 
     async def set_disabled(self, chat_id):
         channel = dict(
@@ -59,7 +59,7 @@ class Database:
             id=chat_id,
             enabled=False,
         )
-        await self.col.update_one({"id": id}, {"$set": {"settings": channel}})
+        await self.col.update_one({"id": chat_id}, {"$set": {"settings": channel}})
 
 # Database
 db = Database(DATABASE_URL, BOT_USERNAME)
