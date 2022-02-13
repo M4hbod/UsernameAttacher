@@ -3,8 +3,4 @@ from helpers.utils import handle_user_status
 
 @Client.on_message(group=-1)
 async def _(bot: Client, cmd):
-    try:
-        await handle_user_status(bot, cmd)
-        print('Done')
-    except Exception as e:
-        print(f'error: {e}')
+    await handle_user_status(bot, cmd)
