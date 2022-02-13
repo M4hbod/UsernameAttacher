@@ -56,6 +56,16 @@
       "description": "Add bot username",
       "required": false,
       "value": ""
+    },
+    "DATABASE_URL": {
+      "description": "Add your MongoDB URL",
+      "required": false,
+      "value": ""
+    },
+    "LOG_CHANNEL": {
+      "description": "Add you log channel ID",
+      "required": false,
+      "value": ""
     }
   }
 }

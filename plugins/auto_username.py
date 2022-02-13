@@ -1,15 +1,13 @@
 from pyrogram import Client, filters
-from plugins.enable import ENABLED
+from helpers.database import db
+from helpers.utils import get_caption
 
 @Client.on_message(filters.channel & ~filters.edited & ~filters.forwarded)
-async def auto_username(client: Client , message):
-    if message.chat.id in ENABLED:
-        a = await client.get_chat_member(message.chat.id, "me")
-        if a.can_edit_messages:
-            y = ''
-            if message.caption:
-                y = message.caption
-            if message.text:
-                y = message.text
-            x = message.chat.username
-            await message.edit(text = f'{y}\n**[@{x}](https://t.me/{x})**', disable_web_page_preview= True)
+async def auto_username(c: Client , m):
+    me = await c.get_chat_member(m.chat.id, "me")
+    if me.can_edit_messages:
+        channel = await db.channel_status(m.chat.id)
+        if channel['enabled'] == True:
+            caption = await get_caption(m)
+            x = m.chat.username
+            await m.edit(text = f'{caption}\n**[@{x}](https://t.me/{x})**', disable_web_page_preview = True)

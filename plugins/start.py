@@ -1,5 +1,5 @@
 from pyrogram import filters, Client
-from Config import BOT_USERNAME
+from config import BOT_USERNAME
 
 @Client.on_message(filters.private & ~filters.command(["start" , f"start@{BOT_USERNAME}" , "help" , f"help@{BOT_USERNAME}"]))
 async def unknown_message_private(c , m):

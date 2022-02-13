@@ -13,6 +13,8 @@ if ENVIRONMENT:
     if MUST_JOIN.startswith("@"):
         MUST_JOIN = MUST_JOIN.replace("@", "")
     BOT_USERNAME = os.environ.get('BOT_USERNAME', None)
+    DATABASE_URL = os.environ.get('DATABASE_URL', None)
+    LOG_CHANNEL = os.environ.get('DATABASE_URL', None)
 else:
     API_ID = 0
     API_HASH = ""
@@ -21,3 +23,5 @@ else:
     if MUST_JOIN.startswith("@"):
         MUST_JOIN = MUST_JOIN[1:]
     BOT_USERNAME = ""
+    DATABASE_URL = ''
+    LOG_CHANNEL = ''
