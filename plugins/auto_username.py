@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from helpers.database import db
 from helpers.utils import get_caption
 
-@Client.on_message(filters.channel & ~filters.edited & ~filters.forwarded)
+@Client.on_message(filters.channel & ~filters.edited & ~filters.forwarded, group=1)
 async def auto_username(c: Client , m):
     me = await c.get_chat_member(m.chat.id, "me")
     if me.can_edit_messages:

@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from helpers.database import db
 
-@Client.on_message(filters.channel & filters.regex("disable") & ~filters.forwarded)
+@Client.on_message(filters.channel & filters.regex("disable") & ~filters.forwarded, group=3)
 async def disabler(c , m):
     me = await c.get_chat_member(m.chat.id, "me")
     if me.can_edit_messages:
