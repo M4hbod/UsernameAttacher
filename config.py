@@ -11,7 +11,7 @@ if ENVIRONMENT:
     BOT_TOKEN = os.environ.get('BOT_TOKEN', None)
     BOT_USERNAME = os.environ.get('BOT_USERNAME', None)
     DATABASE_URL = os.environ.get('DATABASE_URL', None)
-    LOG_CHANNEL = int(os.environ.get('DATABASE_URL', None))
+    LOG_CHANNEL = int(os.environ.get('LOG_CHANNEL', None))
 else:
     API_ID = 0
     API_HASH = ""
