@@ -14,7 +14,7 @@ async def disabler(c , m):
             else:
                 await db.set_disabled(m.chat.id)
                 await m.edit("Disabled ❌")
-            sleep(5)
+            await sleep(5)
             try:
                 await m.delete()
             except:

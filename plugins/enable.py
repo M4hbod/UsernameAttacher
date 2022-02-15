@@ -13,7 +13,7 @@ async def enabler(c , m):
             else:
                 await db.set_enabled(m.chat.id)
                 await m.edit("Enabled ✅")
-            sleep(5)
+            await sleep(5)
             try:
                 await m.delete()
             except:
