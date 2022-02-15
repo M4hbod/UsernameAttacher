@@ -3,7 +3,7 @@ from pyrogram import Client, filters
 from helpers.database import db
 from asyncio import sleep
 
-@Client.on_message(filters.channel & filters.text & filters.regex(r"^(disable)$") & ~filters.forwarded, group=3)
+@Client.on_message(filters.channel & filters.text & filters.regex(r"^(disable)$") & ~filters.forwarded, group=-2)
 async def disabler(c , m):
     me = await c.get_chat_member(m.chat.id, "me")
     if m.chat.username:

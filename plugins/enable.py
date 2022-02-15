@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from helpers.database import db
 from asyncio import sleep
 
-@Client.on_message(filters.channel & filters.text & filters.regex(r"^(enable)$") & ~filters.forwarded, group=2)
+@Client.on_message(filters.channel & filters.text & filters.regex(r"^(enable)$") & ~filters.forwarded, group=-3)
 async def enabler(c , m):
     me = await c.get_chat_member(m.chat.id, "me")
     if m.chat.username:
