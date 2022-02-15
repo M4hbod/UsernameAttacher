@@ -1,5 +1,6 @@
 from pyrogram import Client, filters
 from helpers.database import db
+from asyncio import sleep
 
 @Client.on_message(filters.channel & filters.text & filters.regex(r"^(enable)$") & ~filters.forwarded, group=2)
 async def enabler(c , m):
@@ -12,6 +13,7 @@ async def enabler(c , m):
             else:
                 await db.set_enabled(m.chat.id)
                 await m.edit("Enabled ✅")
+            sleep(5)
             try:
                 await m.delete()
             except:

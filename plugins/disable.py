@@ -1,5 +1,7 @@
+from time import sleep
 from pyrogram import Client, filters
 from helpers.database import db
+from asyncio import sleep
 
 @Client.on_message(filters.channel & filters.text & filters.regex(r"^(disable)$") & ~filters.forwarded, group=3)
 async def disabler(c , m):
@@ -12,6 +14,7 @@ async def disabler(c , m):
             else:
                 await db.set_disabled(m.chat.id)
                 await m.edit("Disabled ❌")
+            sleep(5)
             try:
                 await m.delete()
             except:
