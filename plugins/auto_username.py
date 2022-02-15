@@ -13,24 +13,24 @@ async def auto_username(c: Client , m: Message):
                 x = m.chat.username
                 mode = channel['mode']
                 if mode == 'normal':
-                    sign = f'\n[@{x}](https://t.me/{x})'
+                    sign = f'\n@{x}'
 
                 if mode == 'bold':
-                    sign = f'\n**[@{x}](https://t.me/{x})**'
+                    sign = f'\n<b>[@{x}](https://t.me/{x})</b>'
 
                 if mode == 'italic':
-                    sign = f'\n__[@{x}](https://t.me/{x})__'
+                    sign = f'\n<i>[@{x}](https://t.me/{x})</i>'
 
                 if mode == 'underline':
-                    sign = f'\n--[@{x}](https://t.me/{x})--'
+                    sign = f'\n<u>[@{x}](https://t.me/{x})</u>'
 
                 if mode == 'strike':
-                    sign = f'\n~~[@{x}](https://t.me/{x})~~'
+                    sign = f'\n<s>[@{x}](https://t.me/{x})</s>'
                     
                 if mode == 'spoiler':
-                    sign = f'\n||@{x}||'
+                    sign = f'\n<spoiler>@{x}</spoiler>'
 
                 caption = await get_caption(m)
                 caption += sign
 
-                await m.edit(text = caption, disable_web_page_preview = True, parse_mode = "markdown")
+                await m.edit(text = caption, disable_web_page_preview = True, parse_mode = "html")
