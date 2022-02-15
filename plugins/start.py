@@ -15,4 +15,4 @@ async def start_groups(c , m):
 
 @Client.on_message(filters.private & filters.command(["modes" , f"modes@{BOT_USERNAME}"]), group=8)
 async def start_groups(c , m):
-    await m.reply(f"So There is 6 modes available, you can send `set (mode name)` in your channel to choose a specific mode.\nE.x: set bold\nThese are the modes:\n`normal` - Just normal mode\n`bold` - **[@Telegram](https://t.me/Telegram)**\n`italic` - __[@Telegram](https://t.me/Telegram)__\n`underline` - --[@Telegram](https://t.me/Telegram)--\n`strike - ~~[@Telegram](https://t.me/Telegram)~~\n`spoiler` - ||@Telegram||\nMade with ❤️ by [Mahbod](https://t.me/M4hbod)")
+    await m.reply(f"So There is 6 modes available, you can send `set (mode name)` in your channel to choose a specific mode.\nE.x: set bold\nThese are the modes:\n`normal` - @Telegram\n`bold` - <b>@Telegram</b>\n`italic` - <i>@Telegram</i>\n`underline` - <u>@Telegram</u>\n`strike - <s>@Telegram</s>\nMade with ❤️ by [Mahbod](https://t.me/M4hbod)", parse_mode = "html")

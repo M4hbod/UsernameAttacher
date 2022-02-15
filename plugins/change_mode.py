@@ -8,7 +8,7 @@ async def change_mode(c,m):
     if m.chat.username:
         if me.can_edit_messages:
             mode_text = m.text[4:].strip().lower()
-            if mode_text in ['normal', 'bold', 'italic', 'underline', 'strike', 'spoiler']:
+            if mode_text in ['normal', 'bold', 'italic', 'underline', 'strike']:
                 mode = mode_text
             else:
                 await m.edit('Incorrect mode!')

@@ -16,19 +16,16 @@ async def auto_username(c: Client , m: Message):
                     sign = f'\n@{x}'
 
                 if mode == 'bold':
-                    sign = f'\n<b>[@{x}](https://t.me/{x})</b>'
+                    sign = f'\n<b>@{x}</b>'
 
                 if mode == 'italic':
-                    sign = f'\n<i>[@{x}](https://t.me/{x})</i>'
+                    sign = f'\n<i>@{x}</i>'
 
                 if mode == 'underline':
-                    sign = f'\n<u>[@{x}](https://t.me/{x})</u>'
+                    sign = f'\n<u>@{x}</u>'
 
                 if mode == 'strike':
-                    sign = f'\n<s>[@{x}](https://t.me/{x})</s>'
-                    
-                if mode == 'spoiler':
-                    sign = f'\n<spoiler>@{x}</spoiler>'
+                    sign = f'\n<s>@{x}</s>'
 
                 caption = await get_caption(m)
                 caption += sign
