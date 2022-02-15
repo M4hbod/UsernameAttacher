@@ -16,10 +16,11 @@ class Database:
         if "-100" in str(id):
             return dict(
                 id = id,
+                join_date=datetime.date.today().isoformat(),
                 settings = dict(
-                    join_date=datetime.date.today().isoformat(),
                     enabled=False,
-                    mode='Normal'
+                    mode='normal',
+                    username='default'
                 )
             )
         else:
@@ -38,26 +39,28 @@ class Database:
 
     async def channel_status(self, chat_id):
         default = dict(
-            join_date=datetime.date.today().isoformat(),
             enabled=False,
-            mode='Normal'
+            mode='normal',
+            username='default'
         )
         chat = await self.col.find_one({"id": int(chat_id)})
         return chat.get("settings", default)
 
     async def set_enabled(self, chat_id):
         channel = dict(
-            join_date=datetime.date.today().isoformat(),
-            id=chat_id,
             enabled=True,
         )
         await self.col.update_one({"id": chat_id}, {"$set": {"settings": channel}})
 
     async def set_disabled(self, chat_id):
         channel = dict(
-            join_date=datetime.date.today().isoformat(),
-            id=chat_id,
             enabled=False,
+        )
+        await self.col.update_one({"id": chat_id}, {"$set": {"settings": channel}})
+
+    async def change_mode(self, chat_id, mode):
+        channel = dict(
+            mode=mode
         )
         await self.col.update_one({"id": chat_id}, {"$set": {"settings": channel}})
 

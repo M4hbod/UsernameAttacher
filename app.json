@@ -1,11 +1,8 @@
 {
-  "name": "Instagram Downloader Bot",
-  "description": "Telegram bot to download instagram content",
-  "logo": "https://telegra.ph/file/4e8e8063cfb0de22b0161.jpg",
+  "name": "Username Attacher Bot",
+  "description": "Telegram bot to add username to channel posts",
+  "logo": "https://m4hbod.tk/pics/m4hbod-mini.jpg",
   "keywords": [
-    "telegram",
-    "bot",
-    "python",
     "pyrogram"
   ],
     "buildpacks": [{
@@ -17,21 +14,8 @@
       "size": "free"
     }
   },
-  "addons": [
-      {
-         "options": {
-            "version": "12"
-         },
-         "plan": "heroku-postgresql"
-      }
-   ],
-  "repository": "https://github.com/StarkBotsIndustries/InstagramBot",
+  "repository": "https://github.com/M4hbod/UsernameAttacher",
   "env": {
-    "ENVIRONMENT": {
-      "description": "Don't change ANYTHING.",
-      "required": true,
-      "value": "ANYTHING"
-    },
     "API_ID": {
       "description": "Get this value from my.telegram.org.",
       "required": true,
@@ -45,11 +29,6 @@
     "BOT_TOKEN": {
       "description": "Obtain a Telegram bot token by contacting @BotFather",
       "required": true,
-      "value": ""
-    },
-    "MUST_JOIN": {
-      "description": "Add username/id of a channel/group",
-      "required": false,
       "value": ""
     },
     "BOT_USERNAME": {
