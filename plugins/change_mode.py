@@ -23,6 +23,8 @@ async def change_mode(c,m):
                 mode = 'strike'
             if mode_text == 'spoiler':
                 mode = 'spoiler'
+            if mode:
+                print(mode)
             else:
                 await m.edit('Incorrect mode!')
                 return
