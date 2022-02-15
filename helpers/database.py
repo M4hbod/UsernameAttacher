@@ -47,7 +47,7 @@ class Database:
         return chat.get("settings", default)
 
     async def set_enabled(self, chat_id):
-        channel = await Database.channel_status(Database ,chat_id)
+        channel = await Database.channel_status(self ,chat_id)
         mode = channel['mode']
 
         channel = dict(
@@ -58,7 +58,7 @@ class Database:
         await self.col.update_one({"id": chat_id}, {"$set": {"settings": channel}})
 
     async def set_disabled(self, chat_id):
-        channel = await Database.channel_status(Database ,chat_id)
+        channel = await Database.channel_status(self ,chat_id)
         mode = channel['mode']
 
         channel = dict(
@@ -69,7 +69,7 @@ class Database:
         await self.col.update_one({"id": chat_id}, {"$set": {"settings": channel}})
 
     async def change_mode(self, chat_id, mode):
-        channel = await Database.channel_status(Database ,chat_id)
+        channel = await Database.channel_status(self ,chat_id)
         status = channel['enabled']
         channel = dict(
             enabled=status,
