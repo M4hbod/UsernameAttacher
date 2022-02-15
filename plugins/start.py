@@ -1,7 +1,7 @@
 from pyrogram import filters, Client
 from config import BOT_USERNAME
 
-@Client.on_message(filters.private & ~filters.command(["start" , f"start@{BOT_USERNAME}" , "help" , f"help@{BOT_USERNAME}"]), group=11)
+@Client.on_message(filters.private & ~filters.command(["start" , f"start@{BOT_USERNAME}" , "help" , f"help@{BOT_USERNAME}", "modes" , f"modes@{BOT_USERNAME}"]), group=11)
 async def unknown_message_private(c , m):
     await m.reply("Use /start or /help man :)")
     
