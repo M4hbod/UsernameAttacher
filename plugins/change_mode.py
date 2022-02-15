@@ -7,17 +7,19 @@ async def change_mode(c,m):
     me = await c.get_chat_member(m.chat.id, "me")
     if m.chat.username:
         if me.can_edit_messages:
-            if m.text[4:].strip().lower() == 'normal':
+            mode_text = m.text[4:].strip().lower()
+            print(mode_text)
+            if mode_text == 'normal':
                 mode = 'normal'
-            if m.text[4:].strip().lower() == 'bold':
+            if mode_text == 'bold':
                 mode = 'bold'
-            if m.text[4:].strip().lower() == 'italic':
+            if mode_text == 'italic':
                 mode = 'italic'
-            if m.text[4:].strip().lower() == 'underline':
+            if mode_text == 'underline':
                 mode = 'underline'
-            if m.text[4:].strip().lower() == 'strike':
+            if mode_text == 'strike':
                 mode = 'strike'
-            if m.text[4:].strip().lower() == 'spoiler':
+            if mode_text == 'spoiler':
                 mode = 'spoiler'
             else:
                 await m.edit('Incorrect mode!')
