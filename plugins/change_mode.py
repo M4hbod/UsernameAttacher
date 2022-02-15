@@ -28,7 +28,7 @@ async def change_mode(c,m):
                 await m.edit(f"Mode Changed To -> {mode.upper}")
             except Exception as e:
                 print(e)
-            sleep(5)
+            await sleep(5)
             try:
                 await m.delete()
             except:
