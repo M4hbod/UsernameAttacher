@@ -3,6 +3,8 @@ from pyrogram import Client, filters
 from helpers.database import db
 from helpers.utils import get_caption
 
+GROUP_MEDIA = []
+
 @Client.on_message(filters.channel & ~filters.edited & ~filters.forwarded, group=1)
 async def auto_username(c: Client , m: Message):
     if m.chat.username:
@@ -29,5 +31,9 @@ async def auto_username(c: Client , m: Message):
 
                 caption = await get_caption(m)
                 caption += sign
-
+                if m.media_group_id:
+                    if m.media_group_id in GROUP_MEDIA:
+                        return
+                    else:
+                        GROUP_MEDIA.append(m.media_group_id)
                 await m.edit(text = caption, disable_web_page_preview = True, parse_mode = "html")
