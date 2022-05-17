@@ -1,7 +1,7 @@
 {
   "name": "Username Attacher Bot",
   "description": "Telegram bot to add username to channel posts",
-  "logo": "https://m4hbod.tk/pics/m4hbod-mini.jpg",
+  "logo": "https://user-images.githubusercontent.com/74229780/168831902-162eebe1-14b2-451b-afb6-dcb697570af3.jpg",
   "keywords": [
     "pyrogram"
   ],
@@ -37,7 +37,7 @@
       "value": ""
     },
     "BOT_USERNAME": {
-      "description": "Add bot username",
+      "description": "Add your bots username",
       "required": false,
       "value": ""
     },

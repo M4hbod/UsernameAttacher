@@ -1,21 +1,12 @@
 import os
+from os import getenv
+from dotenv import load_dotenv
 
-ENVIRONMENT = os.environ.get('ENVIRONMENT', False)
+load_dotenv()
 
-if ENVIRONMENT:
-    try:
-        API_ID = int(os.environ.get('API_ID', 0))
-    except ValueError:
-        raise Exception("Your API_ID is not a valid integer.")
-    API_HASH = os.environ.get('API_HASH', None)
-    BOT_TOKEN = os.environ.get('BOT_TOKEN', None)
-    BOT_USERNAME = os.environ.get('BOT_USERNAME', None)
-    DATABASE_URL = os.environ.get('DATABASE_URL', None)
-    LOG_CHANNEL = int(os.environ.get('LOG_CHANNEL', None))
-else:
-    API_ID = 0
-    API_HASH = ""
-    BOT_TOKEN = ""
-    BOT_USERNAME = ""
-    DATABASE_URL = ''
-    LOG_CHANNEL = int('')
+API_ID = int(getenv("API_ID"))
+API_HASH = getenv("API_HASH")
+BOT_TOKEN = getenv("BOT_TOKEN")
+BOT_USERNAME = getenv("BOT_USERNAME")
+DATABASE_URL = getenv("DATABASE_URL")
+CHARGE_LOG_CHANNEL = int(getenv("CHARGE_LOG_CHANNEL"))

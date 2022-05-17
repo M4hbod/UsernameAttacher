@@ -1,36 +1,37 @@
-from time import sleep
 from pyrogram import Client, filters
-from helpers.database import db
+from pyrogram.types import Message
+
 from asyncio import sleep
+from helpers.database import db
 
 @Client.on_message(filters.channel & filters.text & filters.regex(r"^(disable)$") & ~filters.forwarded, group=-2)
-async def disabler(c , m):
-    me = await c.get_chat_member(m.chat.id, "me")
-    if m.chat.username:
+async def disabler(client: Client, message: Message):
+    me=await client.get_chat_member(message.chat.id, "me")
+    if message.chat.username:
         if me.can_edit_messages:
-            channel = await db.channel_status(m.chat.id)
+            channel=await db.get_channel_info(message.chat.id)
             if channel['enabled'] == False:
-                await m.edit("It's already turned OFF ✅")
+                await message.edit("It's already turned OFF ✅")
             else:
-                await db.set_disabled(m.chat.id)
-                await m.edit("Disabled ❌")
+                await db.disable(message.chat.id)
+                await message.edit("Disabled ❌")
             await sleep(5)
             try:
-                await m.delete()
+                await message.delete()
             except:
                 pass
         else:
             if not me.can_send_messages:
                 try:
-                    await c.send_message(m.from_user.id , "Give me Edit Message permission then try again")
+                    await client.send_message(message.from_user.id, "Give me Edit Message permission then try again")
                 except:
                     pass
             else:
                 try:
-                    await m.reply("Give me Edit Message permission then try again")
+                    await message.reply("Give me Edit Message permission then try again")
                 except Exception as e:
                     print(e)
                     return
     else:
         if me.can_edit_messages:
-            await m.edit("Your channel is private so you can't use this bot!")
+            await message.edit("Your channel is private so you can't use this bot!")

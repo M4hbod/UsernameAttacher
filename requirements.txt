@@ -3,3 +3,4 @@ TgCrypto
 motor
 pymongo
 pymongo[srv]
+python-dotenv

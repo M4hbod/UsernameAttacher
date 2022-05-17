@@ -1,13 +1,17 @@
 from pyrogram import Client, filters
+from pyrogram.types import Message
+
 from plugins.auto_username import GROUP_MEDIA
+
 @Client.on_message(filters.command('clean'),filters.user(1261807026), group=-9)
-async def cleaner(c,m):
+async def cleaner(client: Client, message: Message):
     GROUP_MEDIA.clear()
-    await m.reply('Done Sir :)')
+    await message.reply('Done Sir :)')
+
 
 @Client.on_message(filters.command('gp_medias'),filters.user(1261807026), group=-8)
-async def gpmedia_send(c,m):
+async def gpmedia_send(client: Client, message: Message):
     try:
-        await m.reply(GROUP_MEDIA)
+        await message.reply(GROUP_MEDIA)
     except Exception as e:
-        await m.reply(f'ErroR:\n{e}')
+        await message.reply(f'ErroR:\n{e}')

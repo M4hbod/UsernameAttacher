@@ -1,1 +1,1 @@
-worker: python3 makhbaz.py
+worker: python3 main.py

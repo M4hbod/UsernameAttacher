@@ -1,12 +1,13 @@
-import config
 from pyrogram import Client, idle
 from pyrogram.errors import ApiIdInvalid, ApiIdPublishedFlood, AccessTokenInvalid
 
-app = Client(
+from config import API_ID, API_HASH, BOT_TOKEN
+
+app=Client(
     ":memory:",
-    api_id=config.API_ID,
-    api_hash=config.API_HASH,
-    bot_token=config.BOT_TOKEN,
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN,
     plugins=dict(root="plugins"),
 )
 
@@ -18,7 +19,7 @@ if __name__ == "__main__":
         raise Exception("Your API_ID/API_HASH is not valid.")
     except AccessTokenInvalid:
         raise Exception("Your BOT_TOKEN is not valid.")
-    uname = app.get_me().username
+    uname=app.get_me().username
     print(f"@{uname} Started Successfully!")
     idle()
     app.stop()
