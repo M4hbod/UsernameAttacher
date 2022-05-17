@@ -21,12 +21,10 @@ An Open Source Username Attacher Telegram Bot
 ### The Hard Way
 
 ```sh
-virtualenv -p python3 VENV
-. ./VENV/bin/activate
 pip install -r requirements.txt
-cp sample_config.py config.py
---- EDIT config.py values appropriately ---
-python bot.py
+cp .env.example .env
+--- EDIT .env values appropriately ---
+python main.py
 ```
 
 - For FeedBack and Suggestions, Feel free to DM me on [Telegram](https://t.me/M4hbod)
