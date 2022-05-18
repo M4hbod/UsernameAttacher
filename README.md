@@ -10,7 +10,7 @@ An Open Source Username Attacher Telegram Bot
 
 ## Installation
 
-### The Hard Way
+### The Easy Way
 
 ##### Tap the Deploy To Heroku button below to deploy straight to Heroku!
 
