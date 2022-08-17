@@ -1,7 +1,6 @@
 import datetime
 
 import motor.motor_asyncio
-
 from config import BOT_USERNAME, DATABASE_URL
 
 
@@ -45,41 +44,51 @@ class Database:
         return bool(channel)
 
     async def get_channel_info(self, chat_id: int):
-        default=dict(
-            enabled=False,
-            mode='normal',
-            username='default'
-        )
-        chat=await self.col.channels.find_one({"id": int(chat_id)})
+        default = dict(enabled=False, mode='normal', username='default')
+        chat = await self.col.channels.find_one({"id": chat_id})
         return chat.get("settings", default)
 
     async def enable(self, chat_id: int):
-        channel=await self.get_channel_info(self, chat_id)
+        channel=await self.get_channel_info(chat_id)
         mode=channel['mode']
+        username=channel['username']
         channel=dict(
             enabled=True,
             mode=mode,
-            username='default'
+            username=username
         )
         await self.col.channels.update_one({"id": chat_id}, {"$set": {"settings": channel}})
 
     async def disable(self, chat_id: int):
-        channel=await Database.get_channel_info(self, chat_id)
+        channel=await self.get_channel_info(chat_id)
         mode=channel['mode']
+        username=channel['username']
         channel=dict(
             enabled=False,
             mode=mode,
-            username='default'
+            username=username
         )
         await self.col.channels.update_one({"id": chat_id}, {"$set": {"settings": channel}})
 
     async def set_mode(self, chat_id: int, mode: str):
-        channel=await Database.get_channel_info(self, chat_id)
+        channel=await self.get_channel_info(chat_id)
         status=channel['enabled']
+        username=channel['username']
         channel=dict(
             enabled=status,
             mode=mode,
-            username='default'
+            username=username
+        )   
+        await self.col.channels.update_one({"id": chat_id}, {"$set": {"settings": channel}})
+        
+    async def set_username(self, chat_id: int, username: str):
+        channel=await self.get_channel_info(chat_id)
+        status=channel['enabled']
+        mode=channel['mode']
+        channel=dict(
+            enabled=status,
+            mode=mode,
+            username=username
         )   
         await self.col.channels.update_one({"id": chat_id}, {"$set": {"settings": channel}})
 

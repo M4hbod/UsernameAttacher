@@ -1,37 +1,31 @@
+import contextlib
+from asyncio import sleep
+
+from helpers.database import db
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from asyncio import sleep
-from helpers.database import db
 
-@Client.on_message(filters.channel & filters.text & filters.regex(r"^(disable)$") & ~filters.forwarded, group=-2)
+@Client.on_message(filters.channel & filters.text & filters.regex("^(disable)$") & ~filters.forwarded, group=-2)
 async def disabler(client: Client, message: Message):
-    me=await client.get_chat_member(message.chat.id, "me")
-    if message.chat.username:
-        if me.can_edit_messages:
-            channel=await db.get_channel_info(message.chat.id)
-            if channel['enabled'] == False:
-                await message.edit("It's already turned OFF ✅")
-            else:
-                await db.disable(message.chat.id)
-                await message.edit("Disabled ❌")
-            await sleep(5)
-            try:
-                await message.delete()
-            except:
-                pass
+    me = await client.get_chat_member(message.chat.id, "me")
+    channel = await db.get_channel_info(message.chat.id)
+    
+    if me.can_edit_messages:
+        if channel['enabled'] == False:
+            await message.edit("It's already turned OFF❌")
         else:
-            if not me.can_send_messages:
-                try:
-                    await client.send_message(message.from_user.id, "Give me Edit Message permission then try again")
-                except:
-                    pass
-            else:
-                try:
-                    await message.reply("Give me Edit Message permission then try again")
-                except Exception as e:
-                    print(e)
-                    return
+            await db.disable(message.chat.id)
+            await message.edit("Disabled❌")
+
+        await sleep(5)
+        with contextlib.suppress(Exception):
+            await message.delete()
+            
+    elif me.can_send_messages:
+        with contextlib.suppress(Exception):
+            await message.reply("Give me Edit Message permission then try again")
+            
     else:
-        if me.can_edit_messages:
-            await message.edit("Your channel is private so you can't use this bot!")
+        with contextlib.suppress(Exception):
+            await client.send_message(message.from_user.id, "Give me Edit Message permission then try again")
