@@ -1,12 +1,12 @@
 # Telegram Username Attacher
-## Username Attacher Bot - Clone of  [Username Attacher](https://t.me/UsernameAttacherBot)
----
 
 An Open Source Username Attacher Telegram Bot
 
 **Feature**:
 
 - Add Channels Username To Posts
+- Set Custom Username
+- Set Text Mode
 
 ## Installation
 
@@ -27,4 +27,4 @@ cp .env.example .env
 python main.py
 ```
 
-- For FeedBack and Suggestions, Feel free to DM me on [Telegram](https://t.me/M4hbod)
+- For Feedback and Suggestions, Feel free to DM me on [Telegram](https://t.me/M4hbod)
