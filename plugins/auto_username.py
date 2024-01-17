@@ -14,7 +14,7 @@ async def auto_username(client: Client, message: Message):
     if not message.chat.username and channel["username"] == "default":
         return
     me = await client.get_chat_member(message.chat.id, "me")
-    if me.privileges.can_edit_messages and channel["enabled"] == True:
+    if me.privileges.can_edit_messages and channel["enabled"]:
         if channel["username"] == "default":
             username = message.chat.username
         else:

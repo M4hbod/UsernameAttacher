@@ -22,7 +22,7 @@ async def enabler(client: Client, message: Message):
         return
 
     if me.privileges.can_edit_messages:
-        if channel["enabled"] == True:
+        if channel["enabled"]:
             await message.edit("It's already turned ON✅")
         else:
             await db.enable(message.chat.id)
